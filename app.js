@@ -7,6 +7,8 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 
+var raygun = require('raygun');
+
 var app = express();
 
 // view engine setup
@@ -30,7 +32,18 @@ app.use(function(req, res, next) {
   next(err);
 });
 
-// error handlers
+// Raygun
+var raygunClient = new raygun.Client().init({ apiKey: '' });
+app.use(function(err, req, res, next) {
+  if(err){
+    raygunClient.send(err, {}, function() {
+      next(err);
+    });
+  }
+  else {
+    next(err);
+  }
+});
 
 // development error handler
 // will print stacktrace
@@ -53,6 +66,7 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
+
 
 
 module.exports = app;
