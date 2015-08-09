@@ -46,7 +46,7 @@ raygunClient.user = function(req){
 
 app.use(function(err, req, res, next) {
   if(err){
-    raygunClient.send(err, {}, function() {
+    raygunClient.send(err, {"server": "host5"}, function() {
       next(err);
     }, req, ['tag1', 'Bad']);
   }
