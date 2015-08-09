@@ -34,6 +34,16 @@ app.use(function(req, res, next) {
 
 // Raygun
 var raygunClient = new raygun.Client().init({ apiKey: '' });
+
+// User tracking
+raygunClient.user = function(req){
+  return {
+    identifier: '1',
+    email: 'jamie@raygun.io',
+    fullName: 'Jamie Penney'
+  };
+};
+
 app.use(function(err, req, res, next) {
   if(err){
     raygunClient.send(err, {}, function() {
