@@ -48,7 +48,7 @@ app.use(function(err, req, res, next) {
   if(err){
     raygunClient.send(err, {}, function() {
       next(err);
-    }, req);
+    }, req, ['tag1', 'Bad']);
   }
   else {
     next(err);
