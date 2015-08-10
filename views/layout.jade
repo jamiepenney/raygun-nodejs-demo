@@ -3,5 +3,8 @@ html
   head
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
+    script(type='text/javascript' src='//cdn.raygun.io/raygun4js/raygun.min.js')
+    script(type='text/javascript').
+      Raygun.init('FUf6zElJ917dlWbhOEAmvw==').attach();
   body
     block content

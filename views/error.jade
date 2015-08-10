@@ -4,3 +4,7 @@ block content
   h1= message
   h2= error.status
   pre #{error.stack}
+  script(type='text/javascript').
+    document.addEventListener("DOMContentLoaded", function(event) {
+      throw new Error("This is from the error page");
+    });
